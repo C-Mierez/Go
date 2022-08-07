@@ -19,8 +19,32 @@ func main() {
 	// Declaring and using constants
 	usingConstants()
 
-	// Declaring arrays
+	// Declaring arrays and slices
 	usingArrays()
+	usingSlices()
+}
+
+func usingSlices() {
+
+	sliceA := []int{1, 2, 3}
+	sliceB := []int{4, 5, 6}
+
+	fmt.Printf("Slice A: %v, %T \n", sliceA, sliceA)
+	fmt.Printf("Slice B: %v, %T \n", sliceB, sliceB)
+
+	// Appending two slices together using the ... operator
+	sliceC := append(sliceA, sliceB...)
+
+	fmt.Printf("Slice Appended: %v, %T \n", sliceC, sliceC)
+	fmt.Printf("Slice A: %v, %T \n", sliceA, sliceA)
+	fmt.Printf("Slice B: %v, %T \n", sliceB, sliceB)
+
+	// Slicing with intervals can affect the original slice
+	sliceD := append(sliceA[:1], sliceA[2:]...)
+
+	fmt.Printf("Slice Appended intervals: %v, %T \n", sliceD, sliceD)
+	fmt.Printf("Slice A: %v, %T \n", sliceA, sliceA)
+
 }
 
 func usingArrays() {
