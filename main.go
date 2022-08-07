@@ -4,6 +4,8 @@ import (
 	"fmt"
 
 	"github.com/C-Mierez/go/packer"
+	// Could also declare a package alias as:
+	// alias "github.com/C-Mierez/go/packer"
 )
 
 func main() {
@@ -13,6 +15,58 @@ func main() {
 
 	// Testing my own package
 	ownPackage()
+
+	// Declaring and using constants
+	usingConstants()
+
+}
+
+const (
+	constA = iota
+	constB
+	constC
+)
+
+const (
+	_   = iota             // Ignore first value
+	KiB = 1 << (10 * iota) // 2 ^ 10
+	MiB                    // 2 ^ 100
+	GiB                    // 2 ^ 1000
+	TiB                    // 2 ^ 10000
+)
+
+// Encoding boolean "roles" in one single byte of data
+const (
+	isAdmin = 1 << iota
+	isActive
+	isHeadquarters
+	canSeeFinance
+	canSeeHR
+)
+
+func usingConstants() {
+	// Watch out for casing when declaring constants
+	const (
+		ExportedPI = 3.14
+		localPI    = 3.14
+		// No computed constants
+		// computed = math.Sin(1.57)
+	)
+
+	fmt.Printf("ExportedPI: %v, localPI: %v \n", ExportedPI, localPI)
+
+	// Using constants declared as iota
+	// Differently scoped constants don't share the same iota value
+	fmt.Printf("constA: %v, constB: %v, constC: %v \n", constA, constB, constC)
+
+	// Using enumerated constants with a different pattern
+	fmt.Printf("KiB: %v \n", KiB)
+	fmt.Printf("MiB: %v \n", MiB)
+	fmt.Printf("TiB: %v \n", TiB)
+
+	var roles byte = isAdmin | isActive | canSeeHR
+	fmt.Printf("Encoded roles as a byte: %b \n", roles)
+	fmt.Printf("isAdmin: %v \n", isAdmin&roles == isAdmin)
 
 }
 
