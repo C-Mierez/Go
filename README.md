@@ -62,3 +62,49 @@ var (
     z int
 )
 ```
+
+## Primitive Types
+
+Integers can be declared of multiple sizes (`int8, int16...int64`, and unsigned equivalents). Bigger numbers should be handled with other libraries.  
+
+- `int` / `uint`
+- `bool`
+- `byte` 
+- `float32` / `float64`
+- `complex64` /  `complex128` (Can use `real()` and `imag()` to access components)
+## Other Types
+
+- `string` (UTF-8 Byte arrays)
+- `rune` (int32)
+- `array`: `[]{type}()`
+
+
+## Operators
+
+- Boolean Byte operators: `&` And, `|` Or, `^` XOR, `&^` AndNot
+- Byte Operators: `<<` Left Shift, `>>` Right Shift
+
+## Constants and Enums
+
+Constants can't be computed at compile time. Must be explicit values.
+
+Blocks can be used in conjunction with `iota` type to create enumerated constants.
+
+```golang
+const (
+    _ = iota    // Ignore val 0
+    a           // val 1
+    b           // val 2
+    c           // val 3
+)
+
+// Can modify the pattern
+
+const (
+    _ = iota                // Ignore first value
+    KB = 1 << (10 * iota)   // 1 ^ 10
+    MB                      // 1 ^ 100
+    GB                      // 1 ^ 1000
+    TB                      // 1 ^ 10000
+)
+```
