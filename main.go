@@ -19,6 +19,18 @@ func main() {
 	// Declaring and using constants
 	usingConstants()
 
+	// Declaring arrays
+	usingArrays()
+}
+
+func usingArrays() {
+
+	fixedArr := [3]int{1, 2, 3}
+	dynamicArr := [...]int{9, 8, 7}
+
+	fmt.Printf("Fixed size array: %v, %T \n", fixedArr, fixedArr)
+	fmt.Printf("Dynamic size array: %v, %T \n", dynamicArr, dynamicArr)
+
 }
 
 const (
