@@ -1,9 +1,26 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/C-Mierez/go/packer"
+)
 
 func main() {
+
+	// Testing out variable declarations
 	variableDeclaration()
+
+	// Testing my own package
+	ownPackage()
+
+}
+
+func ownPackage() {
+
+	// Using a function from another package
+	i := 5
+	fmt.Printf("Is %v prime? %v \n", i, packer.IsPrime(i))
 }
 
 func variableDeclaration() {

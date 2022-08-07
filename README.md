@@ -17,6 +17,10 @@ By convention, Executable programs (the ones with the main package) are called C
 
 Packages only really make sense in the context of a separate program which uses them.
 
+## Modules
+
+A module is a collection of Go packages stored in a directory with a `go.mod` file at its root. The go.mod file defines the module's path, which is also the import path used while importing packages that are part of this module.
+
 
 ### Naming Convention
 
