@@ -105,6 +105,30 @@ Slice
 - Elements can be spread with the operator `...`
   - ex. `append(slice, elementA, elementB)` can be done using an already existing slice by doing `append(slice, []int{elementA, elementB}...)` 
 
+## Maps
+
+- Can use the `delete()` function to remove elements. 
+  - ex. `delete(myMap, "John")`
+
+## Structs
+
+- Can be declared anonymously `foo := struct{name string}{name: "John"}`
+
+**Embedding** is a tool similar to OOP inheritance. Inheritance is not a thing in Go.
+
+Also, it is possible to use **Tags** on fields to add restrictions to it. These are just strings. Any logic and actual restrictions need to be parsed and figured out by some library that knows how to interpret these.
+```golang
+type Animal struct {
+  name string
+  age int `required max:"100"` // <-- Tags!
+}
+
+type Bird struct {
+  Animal // <-- Embedding!
+  canFly bool 
+}
+```
+
 ## Pointers
 
 Yes, there are pointers.

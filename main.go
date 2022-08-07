@@ -22,6 +22,67 @@ func main() {
 	// Declaring arrays and slices
 	usingArrays()
 	usingSlices()
+
+	// Declaring maps
+	usingMaps()
+
+	// Declaring structs
+	usingStructs()
+}
+
+type LivingThing struct {
+	isAlive bool
+}
+
+type Doctor struct {
+	LivingThing // Embedded struct
+	id          int
+	age         int
+	name        string
+	patientIds  []int
+}
+
+func usingStructs() {
+
+	// These can also be declared without specifying the names of the fields
+	// and using positional order instead
+	aDoctor := Doctor{
+		LivingThing: LivingThing{true},
+		id:          1,
+		age:         60,
+		name:        "Charles",
+		patientIds:  []int{10, 11, 12},
+	}
+
+	fmt.Printf("Doctor: %v, %T \n", aDoctor, aDoctor)
+	fmt.Printf("Doctor's id: %v, %T \n", aDoctor.id, aDoctor.id)
+	fmt.Printf("Doctor's first patient id: %v, %T \n", aDoctor.patientIds[0], aDoctor.patientIds[0])
+	fmt.Printf("Doctor's embedded struct: %v, %T \n", aDoctor.LivingThing, aDoctor.LivingThing)
+}
+
+func usingMaps() {
+
+	userCities := map[string]int{
+		"Charles": 1,
+		"John":    2,
+		"Mary":    7,
+		"Jane":    3,
+		"Tom":     15,
+	}
+
+	fmt.Printf("User cities: %v, %T \n", userCities, userCities)
+	fmt.Printf("Charles' city: %v, %T \n", userCities["Charles"], userCities["Charles"])
+
+	// Can also declare an empty map using the make() function
+
+	delete(userCities, "Mary")
+	fmt.Printf("User cities after deleting Mary: %v, %T \n", userCities, userCities)
+
+	// Using ok syntax to check for errors
+	_, ok := userCities["Mary"]
+	fmt.Printf("Mary's city: %v, OK: %v \n", userCities["Mary"], ok)
+	_, ok2 := userCities["Charles"]
+	fmt.Printf("Charles's city: %v, OK: %v \n", userCities["Charles"], ok2)
 }
 
 func usingSlices() {
