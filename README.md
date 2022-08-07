@@ -76,8 +76,40 @@ Integers can be declared of multiple sizes (`int8, int16...int64`, and unsigned 
 
 - `string` (UTF-8 Byte arrays)
 - `rune` (int32)
-- `array`: `[]{type}()`
 
+### Arrays and Slices
+
+Arrays
+- Fixed Size `[2]int{...elements...}`
+- Dynamic `[...]int{elements}`
+> Initializing with elements is optional
+
+- Access length with `len(arr)`
+
+- Default to be a value type. Copies are real copies.
+
+Slice
+- Declared with `[]int{...elements...}`
+
+- Access length with `len(slice)` (Current length)
+- Access capacity with `cap(slice)` (Current capacity before a new copy and memory reallocation is needed in order to store more values)
+
+- Default to be a reference type. Copies take the address.
+  
+- Can be sliced with the `:` operator to specify an interval. 
+  - ex. `[:], [3:], [:9], [3:9]`
+
+- Can be created with the `make([]type, length, capacity?)` function.
+  - ex. `make([]int,3), make([]int, 10, 50)` 
+
+- Elements can be spread with the operator `...`
+  - ex. `append(slice, elementA, elementB)` can be done using an already existing slice by doing `append(slice, []int{elementA, elementB}...)` 
+
+## Pointers
+
+Yes, there are pointers.
+- `&` Address
+- `*` Pointer
 
 ## Operators
 
