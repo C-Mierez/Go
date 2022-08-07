@@ -28,6 +28,51 @@ func main() {
 
 	// Declaring structs
 	usingStructs()
+
+	// Looooooooooops
+	usingLoops()
+}
+
+func usingLoops() {
+
+	// For loop
+	for i := 0; i < 3; i++ {
+		fmt.Printf("For loop: %v \n", i)
+	}
+	// While loop
+	i := 0
+	for i < 3 {
+		fmt.Printf("While loop: %v \n", i)
+		i++
+	}
+	// Infinite loop
+	i = 0
+	for {
+		fmt.Printf("Infinite loop: %v \n", i)
+		i++
+		if i == 3 {
+			break
+		}
+	}
+
+	// Multiple variables in loop
+	for i, j := 0, 0; i < 3; i, j = i+1, j+1 {
+		fmt.Printf("Multiple variables in loop: i:%v, j:%v \n", i, j)
+	}
+
+	// Range loop
+	for k, v := range []int{1, 2, 3} {
+		fmt.Printf("Range loop from Slice: Key:%v, Value:%v \n", k, v)
+	}
+
+	// Range loop from map
+	for k, v := range map[string]int{"Charles": 1, "John": 2, "Mary": 7} {
+		fmt.Printf("Range loop from Map: Key:%v, Value:%v \n", k, v)
+	}
+
+	// Range loop from channel
+	// TODO
+
 }
 
 type LivingThing struct {
