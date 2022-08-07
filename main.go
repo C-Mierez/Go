@@ -35,6 +35,44 @@ func main() {
 	// Control flow
 	usingControlFlow()
 
+	// Pointers 👀
+	usingPointers()
+
+}
+
+func usingPointers() {
+	var a int = 42
+	var copy int = a
+	var pointer *int = &a
+
+	fmt.Printf("a: %v, %T \n", a, a)
+	fmt.Printf("copy: %v, %T \n", copy, copy)
+	fmt.Printf("pointer: %v, %v, %T \n", pointer, *pointer, pointer)
+
+	// Modifying a variable
+	a = 100
+	fmt.Printf("a: %v, %T \n", a, a)
+	fmt.Printf("copy: %v, %T \n", copy, copy)
+	fmt.Printf("pointer: %v, %v, %T \n", pointer, *pointer, pointer)
+
+	arr := [3]int{1, 2, 3}
+	arrCopy := arr
+	arrPointer := &arr
+	arr[1] = 100
+
+	fmt.Printf("arr: %v, %T \n", arr, arr)
+	fmt.Printf("arrCopy: %v, %T \n", arrCopy, arrCopy)
+	fmt.Printf("arrPointer: %v, %v, %T \n", arrPointer, *arrPointer, arrPointer)
+
+	slice := []int{1, 2, 3}
+	sliceCopy := slice
+	slicePointer := &slice
+	slice[1] = 100
+
+	fmt.Printf("slice: %v, %T \n", slice, slice)
+	fmt.Printf("sliceCopy: %v, %T \n", sliceCopy, sliceCopy)
+	fmt.Printf("slicePointer: %v, %v, %T \n", slicePointer, *slicePointer, slicePointer)
+
 }
 
 func panicker() {

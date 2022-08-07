@@ -145,6 +145,13 @@ Yes, there are pointers.
 - `&` Address
 - `*` Pointer
 
+It is possible to use the `new(myStruct)` to create a new empty object and receive a pointer to it.
+
+Dereferencing can be done in two ways:
+- `(*pointer).field` to access `field` from the dereferenced pointer.
+-  `pointer.field` is syntactic sugar. Compiler understand we are not accessing `field` from the pointer but from the underlying object it points to.
+
+Slices and Maps are some data structures that when "copied", instead a pointer to the underlying data is given.
 ## Operators
 
 - Boolean Byte operators: `&` And, `|` Or, `^` XOR, `&^` AndNot
