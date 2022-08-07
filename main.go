@@ -3,10 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	variables()
+	variableDeclaration()
 }
 
-func variables() {
+func variableDeclaration() {
 	// Normal way of declaring variables
 	var a int
 	var b bool = true
