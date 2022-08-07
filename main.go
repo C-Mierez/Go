@@ -38,6 +38,66 @@ func main() {
 	// Pointers 👀
 	usingPointers()
 
+	// Functions!
+	usingFunctions()
+
+}
+
+type myStruct struct {
+	name string
+	age  int
+}
+
+func (ms myStruct) toString() string {
+	return fmt.Sprintf("Name: %v, Age: %v \n", ms.name, ms.age)
+}
+
+func highOrderFunc(f func(int) bool, i int) bool {
+	return f(i)
+}
+
+func erroringFunction(a int) (string, error) {
+	if a == 0 {
+		return "", fmt.Errorf("a cannot be 0")
+	}
+	return "Valid value!", nil
+}
+
+func returnPointer() *int {
+	i := 5
+	fmt.Printf("Returning pointer to %v \n", i)
+	return &i
+}
+
+func variaticParams(message string, args ...int) string {
+	return fmt.Sprintf("Variatic params: %v %v, %T \n", message, args, args)
+}
+
+func usingFunctions() {
+	res := variaticParams("My messasge", 1, 2, 3, 4, 5)
+	fmt.Printf("%v \n", res)
+
+	pointer := returnPointer()
+	fmt.Printf("Returned pointer from a function: %v \n", *pointer)
+	*pointer = 10
+	fmt.Printf("Pointer after modification: %v \n", *pointer)
+
+	res, err := erroringFunction(0)
+	if err != nil {
+		fmt.Printf("Error: %v \n", err)
+	} else {
+		fmt.Printf("Result: %v \n", res)
+	}
+
+	i := 5
+	fmt.Printf("High order function. Passing %f with value %v: %v \n", packer.IsPrime, i, highOrderFunc(packer.IsPrime, i))
+
+	someStruct := myStruct{
+		name: "John",
+		age:  50,
+	}
+
+	fmt.Printf("toString method from myStruct struct: %v \n", someStruct.toString())
 }
 
 func usingPointers() {

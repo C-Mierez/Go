@@ -18,10 +18,13 @@
   - [Operators](#operators)
   - [Constants and Enums](#constants-and-enums)
   - [Control Flow](#control-flow)
+    - [Defer](#defer)
+    - [Panic](#panic)
+    - [Recover](#recover)
 
 ## Packages
 
-Go programs start running in the main package. It is a special package that is used with programs that are meant to be executable.
+Go programs start running in the `main` package. It is a special package that is used with programs that are meant to be executable.
 
 By convention, Executable programs (the ones with the main package) are called Commands. Others are called simply Packages.
 
@@ -205,3 +208,50 @@ The pattern is that things are normally not opinionated about whether something 
 This is especially useful on nested functions. `recover()` recovers from a panic, in which the function stops its execution, but functions higher up the call stack can still continue running, since the panicked function has "handled" the error.
 
 However, if `recover()` is used, and the error can still not be handled, another `panic()` would need to be thrown in order to make sure the application stops running (because it is in an irrecoverable state).
+
+## Functions!
+They can return pointers to locally declared variables. Go automatically upgrades these variables from the stack to the heap.
+
+They can be treated as variables. Thus creating the possibility of having high-order functions that take other functions as parameters.
+
+They can return multiple values. Normally this is used to return `(expectedType, error)` tuples, since errors are preferred instead of panicking.
+
+Deep scoped functions should use variables from outside their scope by receiving them as parameters instead of accessing them directly. This avoids future conflicts when async execution is introduced.
+- ```golang
+  func main() {
+    x := 10
+    for 1 < 3 {
+      shouldBreak := func myDeepFunc(x int) bool {
+        return x == 10
+      }(x) // <-- Pass as parameter
+      if shouldBreak {
+        break
+      }
+    }
+  }
+  ```
+### Methods? 👀
+
+These are basically functions that are executing in a known context (Any type in Go). So we are adding *methods* to a certain type in the context of its value.
+
+```golang
+type myStruct struct {
+	name string
+	age  int
+}
+
+func (ms myStruct) toString() string {
+	return fmt.Sprintf("Name: %v, Age: %v \n", ms.name, ms.age)
+}
+
+func main() {
+  someStruct := myStruct{
+    name: "John",
+    age: 50,
+  }
+
+  someStruct.toString()
+}
+```
+
+Methods can receive the address of the type instead, and handle values from reference instead of creating copies.
