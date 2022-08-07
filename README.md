@@ -5,9 +5,19 @@
 
 - [Go<sub>lang</sub> 🐿](#gosublangsub-)
   - [Packages](#packages)
+  - [Modules](#modules)
     - [Naming Convention](#naming-convention)
   - [Variables must be used](#variables-must-be-used)
   - [Factoring statements](#factoring-statements)
+  - [Primitive Types](#primitive-types)
+  - [Other Types](#other-types)
+    - [Arrays and Slices](#arrays-and-slices)
+  - [Maps](#maps)
+  - [Structs](#structs)
+  - [Pointers](#pointers)
+  - [Operators](#operators)
+  - [Constants and Enums](#constants-and-enums)
+  - [Control Flow](#control-flow)
 
 ## Packages
 
@@ -164,3 +174,27 @@ const (
     TB                      // 1 ^ 10000
 )
 ```
+
+## Control Flow
+
+### Defer
+The keyword `defer` executes any function passed into it AFTER every statement has been run by the function, but BEFORE it returns. Deferred functions get executed in LIFO order.
+
+Additionally, parameters in deferred functions are eagerly assigned; i.e. values used will be those declared before the deferred functions statement, ignoring what happens afterwards even-though the function is executing at the end.
+
+### Panic
+Go does not have exceptions. Many "exceptional" cases are instead considered normal. To avoid common connotational meaning from exceptions, Go instead refers to these situations as **Panic**.
+
+In order to throw a Panic it is possible to use `panic(errMessage)`
+
+The pattern is that things are normally not opinionated about whether something is a panic or not. Instead, if something goes wrong, it is returned as an error, and it is then up to the developer to decide whether to panic or not.
+
+> **Panics** happen AFTER deferred statements. And deferred statements always execute even if the function panics.
+
+### Recover
+
+`recover()` is a built-in function that regains control of a panicking goroutine. Recover is only useful inside deferred functions.
+
+This is especially useful on nested functions. `recover()` recovers from a panic, in which the function stops its execution, but functions higher up the call stack can still continue running, since the panicked function has "handled" the error.
+
+However, if `recover()` is used, and the error can still not be handled, another `panic()` would need to be thrown in order to make sure the application stops running (because it is in an irrecoverable state).

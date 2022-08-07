@@ -31,6 +31,31 @@ func main() {
 
 	// Looooooooooops
 	usingLoops()
+
+	// Control flow
+	usingControlFlow()
+
+}
+
+func panicker() {
+	fmt.Printf("About to panic...\n")
+
+	// We can define a deferred function that can recover the panic
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Printf("Panic recovered: %v \n", err)
+		}
+	}()
+
+	panic("I AM PANICKING!!!")
+	fmt.Printf("Panicked.\n") // This wont be printed
+}
+
+func usingControlFlow() {
+
+	fmt.Printf("Start of control flow function...\n")
+	panicker()
+	fmt.Printf("End of control flow function.\n")
 }
 
 func usingLoops() {
