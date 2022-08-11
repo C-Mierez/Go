@@ -70,7 +70,7 @@ func returnPointer() *int {
 }
 
 func variaticParams(message string, args ...int) string {
-	return fmt.Sprintf("Variatic params: %v %v, %T \n", message, args, args)
+	return fmt.Sprintf("Variatic Params: %v %v, %T \n", message, args, args)
 }
 
 func usingFunctions() {
