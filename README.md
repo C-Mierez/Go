@@ -22,9 +22,10 @@
     - [Panic](#panic)
     - [Recover](#recover)
   - [Functions!](#functions)
-    - [Interfaces](#interfaces)
-    - [Go Routines!](#go-routines)
-    - [Channels](#channels)
+    - [Methods](#methods)
+  - [Interfaces](#interfaces)
+  - [Go Routines!](#go-routines)
+  - [Channels](#channels)
 
 ## Packages
 
@@ -234,7 +235,7 @@ Deep scoped functions should use variables from outside their scope by receiving
     }
   }
   ```
-### Methods? 👀
+### Methods
 
 These are basically functions that are executing in a known context (Any type in Go). So we are adding *methods* to a certain type in the context of its value.
 
