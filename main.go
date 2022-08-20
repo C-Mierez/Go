@@ -48,7 +48,8 @@ type myStruct struct {
 	age  int
 }
 
-func (ms myStruct) toString() string {
+func (ms *myStruct) toString() string {
+	ms.age = 100
 	return fmt.Sprintf("Name: %v, Age: %v \n", ms.name, ms.age)
 }
 
@@ -98,6 +99,7 @@ func usingFunctions() {
 	}
 
 	fmt.Printf("toString method from myStruct struct: %v \n", someStruct.toString())
+	fmt.Printf("struct value is modified: %v \n", someStruct)
 }
 
 func usingPointers() {

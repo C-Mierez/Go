@@ -21,6 +21,7 @@
     - [Defer](#defer)
     - [Panic](#panic)
     - [Recover](#recover)
+  - [Functions!](#functions)
 
 ## Packages
 
