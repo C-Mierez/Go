@@ -23,6 +23,7 @@
     - [Recover](#recover)
   - [Functions!](#functions)
     - [Interfaces](#interfaces)
+    - [Go Routines!](#go-routines)
 
 ## Packages
 
@@ -311,4 +312,10 @@ The best practice is to export the explicit objects and don't define interfaces 
 
 - also try to receive interfaces whenever possible.
 
+### Go Routines!
 
+We use the `go` keyword to launch a function as a routine. These are "green" routines that are managed and scheduled by the Go scheduler and make smart and efficient use of actual system threads in order to avoid overhead from the creation/destruction of these. 
+
+It is common practice to use anonymous functions with go routines, though it is important to make sure coupling is handled properly in order to avoid race condition between routines. 
+
+Some already existing libraries allow for sync management between routines, like the `RWMutex` and `WaitGroup`.

@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/C-Mierez/go/packer"
+	"github.com/C-Mierez/go/routines"
 	// Could also declare a package alias as:
 	// alias "github.com/C-Mierez/go/packer"
 )
@@ -44,6 +45,9 @@ func main() {
 	// Interfaces
 	usingInterfaces()
 
+	// Routines
+	routines.Main()
+	routines.SynchedMain()
 }
 
 type Writer interface {
