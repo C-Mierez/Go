@@ -48,6 +48,7 @@ func main() {
 	// Routines
 	routines.Main()
 	routines.SynchedMain()
+	routines.ChanneledMain()
 }
 
 type Writer interface {

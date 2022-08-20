@@ -24,6 +24,7 @@
   - [Functions!](#functions)
     - [Interfaces](#interfaces)
     - [Go Routines!](#go-routines)
+    - [Channels](#channels)
 
 ## Packages
 
@@ -319,3 +320,7 @@ We use the `go` keyword to launch a function as a routine. These are "green" rou
 It is common practice to use anonymous functions with go routines, though it is important to make sure coupling is handled properly in order to avoid race condition between routines. 
 
 Some already existing libraries allow for sync management between routines, like the `RWMutex` and `WaitGroup`.
+
+### Channels 
+
+They are cool.

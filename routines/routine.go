@@ -53,3 +53,42 @@ func increment() {
 	counter++
 	wg.Done()
 }
+
+func ChanneledMain() {
+	fmt.Printf("\n------------------\nChanneledMain\n------------------\n")
+	ch := make(chan int) // Strongly typed messages (in this case int)
+
+	for x := 0; x < 5; x++ {
+		wg.Add(2)
+		go func() {
+			i := <-ch
+			fmt.Printf("Received %v from the channel!\n", i)
+			wg.Done()
+		}()
+
+		go func() {
+			i := 42
+			fmt.Printf("Sending %v to the channel!\n", i)
+			ch <- i
+			wg.Done()
+		}()
+	}
+	wg.Wait()
+
+	// We can also set the direction we want data to flow in
+	fmt.Printf("One way channel\n")
+	wg.Add(2)
+	go func(ch <-chan int) {
+		i := <-ch
+		fmt.Printf("Received %v from the channel!\n", i)
+		wg.Done()
+	}(ch)
+
+	go func(ch chan<- int) {
+		i := 42
+		fmt.Printf("Sending %v to the channel!\n", i)
+		ch <- i
+		wg.Done()
+	}(ch)
+	wg.Wait()
+}
