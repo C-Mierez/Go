@@ -262,7 +262,7 @@ Methods can receive the address of the type instead, and handle values from refe
 
 Methods can only be defined on types you have access to. That is, no primitives.
 
-### Interfaces
+## Interfaces
 
 We can create interfaces as a type, in which we declare functions without implementation.
 
@@ -313,7 +313,7 @@ The best practice is to export the explicit objects and don't define interfaces 
 
 - also try to receive interfaces whenever possible.
 
-### Go Routines!
+## Go Routines!
 
 We use the `go` keyword to launch a function as a routine. These are "green" routines that are managed and scheduled by the Go scheduler and make smart and efficient use of actual system threads in order to avoid overhead from the creation/destruction of these. 
 
