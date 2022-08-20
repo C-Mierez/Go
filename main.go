@@ -41,6 +41,70 @@ func main() {
 	// Functions!
 	usingFunctions()
 
+	// Interfaces
+	usingInterfaces()
+
+}
+
+type Writer interface {
+	Write([]byte) (int, error)
+}
+
+type ConsoleWriter struct{}
+
+func (cw ConsoleWriter) Write(data []byte) (int, error) {
+	n, err := fmt.Printf("%s", string(data))
+	return n, err
+}
+
+type BarkerSnifferMutator interface {
+	Bark([]byte)
+	Sniff([]byte)
+	Mutate([]byte)
+}
+
+type Dog struct {
+	name string
+}
+
+func (d *Dog) Bark(target []byte) {
+	fmt.Printf("%v is barking at %v \n", d.name, string(target))
+}
+
+func (d *Dog) Sniff(target []byte) {
+	fmt.Printf("%v is sniffing at %v \n", d.name, string(target))
+}
+
+func (d *Dog) Mutate(newName []byte) {
+	fmt.Printf("Mutating %v's name to %v \n", d.name, string(newName))
+	d.name = string(newName)
+}
+
+func usingInterfaces() {
+	// We create a variable of type Writer (the interface)
+	// but we can instantiate it with a ConsoleWriter type
+	var w Writer = ConsoleWriter{}
+	w.Write([]byte("Hello Writer!\n"))
+
+	// Composing Interfaces
+	var bsm BarkerSnifferMutator = &Dog{name: "Scott"}
+	fmt.Printf("BarkerSnifferMutator interface instance: %v \n", bsm)
+	bsm.Bark([]byte("Sparky"))
+	bsm.Mutate([]byte("John the Dog"))
+	bsm.Sniff([]byte("Sparky"))
+	fmt.Printf("BarkerSnifferMutator interface instance after calling methods: %v \n", bsm)
+
+	// Type Switches
+	var i interface{} = "Hello"
+	switch i.(type) {
+	case int:
+		fmt.Printf("The type of i is an int \n")
+	case string:
+		fmt.Printf("The type of i is a string \n")
+	default:
+		fmt.Printf("The type of i is unknown \n")
+	}
+
 }
 
 type myStruct struct {

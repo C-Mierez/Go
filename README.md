@@ -22,6 +22,7 @@
     - [Panic](#panic)
     - [Recover](#recover)
   - [Functions!](#functions)
+    - [Interfaces](#interfaces)
 
 ## Packages
 
@@ -256,3 +257,58 @@ func main() {
 ```
 
 Methods can receive the address of the type instead, and handle values from reference instead of creating copies.
+
+Methods can only be defined on types you have access to. That is, no primitives.
+
+### Interfaces
+
+We can create interfaces as a type, in which we declare functions without implementation.
+
+Later on, **any type** could potentially implement this function as a **method** and be used as an instance of this interface.
+
+The way Go is thought out is that, interfaces are not something you need to worry about at design time, but instead consumers can create an interface themselves and shape it into the way they need in their application.  
+
+Interfaces can also be embedded in a similar way as Structs. 
+
+```golang
+type IntA interface {}
+
+type IntB interface {}
+
+type IntAB interface {
+  IntA
+  IntB
+}
+
+```
+
+There is also a special kind of interface named the "empty interface" which is just as the name implies, an interface with no methods defined, and it is declared on the fly.
+
+To do anything useful with it, it is likely gonna require reflection steps in which to try and figure out what methods are available on it.
+
+```golang
+var myObj interface{} = MyActualInstance{}
+
+if ai, ok := myObj.(AnotherInterface); ok {
+  ai.Write("Hi")
+}
+
+yai, ok := myObj.(YetAnotherInterface) // Type Conversion
+if ok {
+  // ...
+}
+```
+
+The best practice is to export the explicit objects and don't define interfaces unless strictly necessary. Go is backwards compared to other languages, since interfaces are implicit.
+
+- Your components don't explicitly *implement* interfaces 
+  
+  This avoids forcing consumers to have to implement every single thing and instead allow them to focus on just the things they need.
+
+- but do try to *use* other interfaces, hence allowing a more free future compose-ability.
+
+  Export interfaces of the types that you are consuming. Then whoever is using the package knows what methods need to be implemented in order for your component to work - but this saves you from having to worry about the implementation of those consumed objects.
+
+- also try to receive interfaces whenever possible.
+
+
